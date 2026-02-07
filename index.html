@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUGGET REST API'S</title>
+    <!-- Menggunakan font yang tegas -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Mega:wght@700;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. RESET & VARIABLES --- */
+        :root {
+            --bg-color: #fffdf0; /* Cream/Putih Tulang */
+            --black: #121212;
+            --accent-pink: #ff90e8;
+            --accent-blue: #23a6d5;
+            --accent-yellow: #ffbd00;
+            --accent-green: #00f260;
+            --border-thick: 4px solid var(--black);
+            --shadow-hard: 6px 6px 0px var(--black);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Penting agar layout tidak berantakan */
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-color);
+            /* Pattern garis-garis halus CSS murni (tanpa JS berat) */
+            background-image: radial-gradient(var(--black) 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: var(--black);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* --- 2. LOADING SCREEN (Simple & Stable) --- */
+        .loading-screen {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--accent-blue);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s;
+            border-bottom: var(--border-thick);
+        }
+
+        .loader-content {
+            background: white;
+            padding: 30px 50px;
+            border: var(--border-thick);
+            box-shadow: var(--shadow-hard);
+            font-family: 'Lexend Mega', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Animasi loading sederhana (titik-titik) */
+        .dots span {
+            display: inline-block;
+            width: 10px; height: 10px;
+            background: var(--black);
+            margin: 0 2px;
+            animation: bounce 0.6s infinite alternate;
+        }
+        .dots span:nth-child(2) { animation-delay: 0.2s; }
+        .dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            to { transform: translateY(-8px); }
+        }
+
+        /* --- 3. MAIN CONTAINER --- */
+        .container {
+            width: 100%;
+            max-width: 800px;
+            display: none; /* Sembunyikan dulu sampai loading selesai */
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* --- 4. COMPONENTS --- */
+        
+        /* Header Card */
+        .card {
+            background: white;
+            border: var(--border-thick);
+            box-shadow: var(--shadow-hard);
+            padding: 2rem;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0px var(--black);
+        }
+
+        .header-title {
+            font-family: 'Lexend Mega', sans-serif;
+            font-size: 2.5rem;
+            line-height: 1.1;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--black) 50%, var(--accent-pink) 50%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-weight: 700;
+            background: var(--accent-yellow);
+            display: inline-block;
+            padding: 5px 10px;
+            border: 3px solid var(--black);
+            box-shadow: 4px 4px 0px var(--black);
+            transform: rotate(-1deg);
+        }
+
+        /* Profile Image */
+        .profile-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border: var(--border-thick);
+            box-shadow: 8px 8px 0px var(--accent-pink);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: rotate(3deg) scale(1.02);
+            box-shadow: 10px 10px 0px var(--black);
+        }
+
+        /* Team List */
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .member-card {
+            background: #fff;
+            border: 3px solid var(--black);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 4px 4px 0px var(--black);
+            transition: all 0.2s;
+        }
+
+        .member-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--black);
+        }
+
+        .member-icon {
+            font-size: 2rem;
+            background: var(--accent-green);
+            width: 60px; height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--black);
+        }
+
+        .member-info h3 {
+            font-family: 'Lexend Mega', sans-serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .member-info p {
+            font-size: 0.9rem;
+            background: var(--black);
+            color: white;
+            padding: 2px 8px;
+            width: fit-content;
+            margin-top: 4px;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: grid;
+            /* Mengatur agar tombol tersusun rapi, 2 kolom di desktop, 1 kolom di HP */
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 1.2rem;
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 900;
+            font-family: 'Lexend Mega', sans-serif;
+            text-transform: uppercase;
+            border: var(--border-thick);
+            box-shadow: var(--shadow-hard);
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0px var(--black);
+        }
+
+        .btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: 0px 0px 0px var(--black);
+        }
+
+        .btn-telegram { background-color: #e0f2fe; }
+        .btn-channel { background-color: #ffe4e6; }
+        
+        /* Perbaikan Button 3: Ukuran sama dengan yang lain, warna beda */
+        .btn-docs { 
+            background-color: var(--accent-pink); 
+            /* Menghapus grid-column: 1 / -1 agar tidak memanjang */
+        }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 600px) {
+            .header-title { font-size: 1.8rem; }
+            .card { padding: 1.5rem; }
+            
+            /* Di HP, tombol disusun vertikal 1 kolom agar muat */
+            .btn-group { 
+                grid-template-columns: 1fr; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader-content">
+            LOADING <div class="dots"><span></span><span></span><span></span></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container" id="mainContent">
+        
+        <!-- Header -->
+        <div class="card" style="text-align: center;">
+            <h1 class="header-title">NUGGET<br>REST API'S</h1>
+            <span class="subtitle">Gateway to Powerful API</span>
+        </div>
+
+        <!-- Profile -->
+        <div class="profile-wrapper">
+            <img src="https://files.catbox.moe/mc5s2z.jpeg" alt="Nugget" class="profile-img">
+        </div>
+
+        <!-- Credits -->
+        <div class="card">
+            <h2 style="font-family: 'Lexend Mega'; margin-bottom: 1.5rem; border-bottom: 4px solid black; display:inline-block;">CREDITS</h2>
+            <div class="team-grid">
+                <!-- Member 1 -->
+                <div class="member-card" style="background: #fff0f5;">
+                    <div class="member-icon">💦</div>
+                    <div class="member-info">
+                        <h3>Kyuu</h3>
+                        <p>kyuu gay</p>
+                    </div>
+                </div>
+                <!-- Member 2 -->
+                <div class="member-card" style="background: #f0f9ff;">
+                    <div class="member-icon">💦</div>
+                    <div class="member-info">
+                        <h3>Ikyy</h3>
+                        <p>pembokep</p>
+                    </div>
+                </div>
+                <!-- Member 3 -->
+                <div class="member-card" style="background: #f0fdf4;">
+                    <div class="member-icon">💦</div>
+                    <div class="member-info">
+                        <h3>Varhad</h3>
+                        <p>si ganteng</p>
+                    </div>
+                </div>
+                <!-- Member 4 -->
+                <div class="member-card" style="background: #fefce8;">
+                    <div class="member-icon">👨‍💻</div>
+                    <div class="member-info">
+                        <h3>Team Sugiono</h3>
+                        <p>Developers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="btn-group">
+            <a href="https://t.me/nuggettxvec" target="_blank" class="btn btn-telegram">
+                💬 Telegram Saya
+            </a>
+            <a href="https://t.me/nuggetinformations" target="_blank" class="btn btn-channel">
+                📢 Channel Updates
+            </a>
+            <!-- Button 3 sekarang ukurannya standar (sama dengan di atas) -->
+            <a href="docu.html" class="btn btn-docs">
+                📖 View Docs
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Simple Script (Tanpa Library Eksternal) -->
+    <script>
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loadingScreen');
+            const main = document.getElementById('mainContent');
+
+            // Hilangkan loading
+            loader.style.opacity = '0';
+            loader.style.visibility = 'hidden';
+
+            // Tampilkan konten utama
+            setTimeout(() => {
+                main.style.display = 'flex';
+            }, 300);
+        });
+    </script>
+</body>
+</html>
