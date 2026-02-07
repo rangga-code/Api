@@ -1,0 +1,277 @@
+{
+  "name": "Nugget Api's",
+  "version": "Telaso Jees",
+  "description": "Simple and Easy-to-Use API Documentation",
+  "header": {
+    "status": "Aktif!",
+    "imageSrc": [
+      "https://raw.githubusercontent.com/IkyyExecutive/IkyyBokep/main/uploads/1769787372783_2843_file_503.jpg"
+    ],
+    "imageSize": {
+      "mobile": "80%",
+      "tablet": "40%",
+      "desktop": "40%"
+    }
+  },
+  "apiSettings": {
+    "creator": "ibnuu"
+  },
+  "links": [
+    {
+      "name": "Channel Informations",
+      "url": "https://t.me/nuggetinformations"
+    },
+    {
+      "name": "Contact Me",
+      "url": "https://t.me/nuggettxvec"
+    }
+  ],
+  "categories": [
+    {
+      "name": "AI (Artificial Intelligence)",
+      "items": [
+        {
+          "name": "Gemini",
+          "desc": "Talk with Gemini ai",
+          "path": "/ai/gemini?prompt="
+        },
+        {
+          "name": "Meta",
+          "desc": "Talk with Metaai ai",
+          "path": "/ai/metaai?apikey=YOUR_KEY&text="
+        },
+        {
+          "name": "Publicai",
+          "desc": "Talk with Public Ai",
+          "path": "/ai/publicai?apikey=YOUR_KEY&q="
+        },
+        {
+          "name": "Dolphin",
+          "desc": "Talk with Dolphin",
+          "path": "/ai/dolphin?prompt="
+        }
+      ]
+    },
+    {
+      "name": "Random",
+      "items": [
+        {
+          "name": "Cecan China",
+          "desc": "Cecan China Random Images",
+          "path": "/random/cecan"
+        },
+        {
+          "name": "Cecan Indo",
+          "desc": "Cecan Indonesia Random Images",
+          "path": "/random/indonesia"
+        },
+        {
+          "name": "Cecan Korea",
+          "desc": "Cecan Korean Random Images",
+          "path": "/random/korea"
+        },
+		  {
+          "name": "Cecan Japan",
+          "desc": "Cecan Japan Random Images",
+          "path": "/random/japan"
+        },
+        {
+          "name": "cecan Random",
+          "desc": "Cecan Random Images",
+          "path": "/random/cecanran"
+        },
+		  {
+          "name": "Cecan Kayes",
+          "desc": "Cecan Kayes Random Images",
+          "path": "/random/kayes",
+          "status": "ready"
+        },
+        {
+          "name": "Blue Archive",
+          "desc": "Blue Archive Random Images",
+          "path": "/random/ba"
+        }
+      ]
+    },
+	  {
+  "name": "Stalker",
+  "items": [
+    {
+      "name": "Tiktok Stalker",
+      "desc": "Stalk profil tiktok",
+      "path": "/stalker/stalktiktok?apikey=uget&username=",
+      "note": "username: username TikTok tanpa @ (contoh: nuggetnih)"
+    }
+  ]
+},
+	  {
+      "name": "Random Cecan V2 (Video)",
+      "items": [
+		  {
+          "name": "Ribka Video",
+          "desc": "Video cecan Ribka random",
+          "path": "/randomv2/ribka"
+        },
+        {
+          "name": "Andin Video",
+          "desc": "Video cecan Andin random",
+          "path": "/randomv2/andin"
+        },
+        {
+          "name": "Amelia Video",
+          "desc": "Video cecan Amelia random",
+          "path": "/randomv2/amelia"
+        },
+        {
+          "name": "Novy Video",
+          "desc": "Video cecan Novy random",
+          "path": "/randomv2/novy"
+        },
+        {
+          "name": "Yaya Video",
+          "desc": "Video cecan Yaya random",
+          "path": "/randomv2/yaya"
+        }
+      ]
+    },
+    {
+      "name": "Downloader",
+      "items": [
+        {
+  "name": "Pinterest Downloader",
+  "desc": "Download media (video/gambar) dari Pinterest",
+  "path": "/download/pindl?apikey=uget&url="
+},
+        {
+          "name": "Instagram Downloader",
+          "desc": "Download Instagram photos/videos",
+          "path": "/download/instagram?apikey=uget&query="
+        },
+        {
+          "name": "Tiktok Downloader",
+          "desc": "Download Tiktok photos/videos",
+          "path": "/download/tiktok?apikey=uget&url="
+        }
+      ]
+    },
+    {
+      "name": "Canvas",
+      "items": [
+		 {
+          "name": "IQC Chat",
+          "desc": "Membuat gambar chat iPhone Quote",
+          "path": "/canvas/iqc?text=&chatTime=&statusBarTime="
+          },
+        {
+          "name": "BratV1",
+          "desc": "Brat generator",
+          "path": "/canvas/bratv1?apikey=uget&text="
+        }
+      ]
+    },
+	  {
+  "name": "Games",
+  "items": [
+    {
+      "name": "Pilihan Ganda",
+      "desc": "Dapatkan soal kuis pilihan ganda acak",
+      "path": "/games/pilihanganda?apikey=uget",
+      "note": "Mengembalikan satu soal kuis pilihan ganda beserta jawabannya."
+    },
+    {
+      "name": "Tebak Kata", 
+      "desc": "Dapatkan soal tebak kata acak",
+      "path": "/games/tebakkata?apikey=uget",
+      "note": "Mengembalikan soal tebak kata beserta jawabannya."
+    }
+  ]
+},
+    {
+      "name": "Tools Gambar",
+      "items": [
+        {
+          "name": "Penjernih Gambar",
+          "desc": "HD v1",
+          "path": "/enchaher/hd?apikey=uget&imageUrl="
+        }
+      ]
+    },
+	  {
+		"name": "Berita",
+       "items": [  
+        {
+  "name": "CNN Indonesia News",
+  "desc": "Get latest news from CNN Indonesia",
+  "path": "/berita/cnn?apikey=uget&limit="
+		},
+		  {
+  "name": "Tribun News",
+  "desc": "Get latest news from Tribun News",
+  "path": "/berita/tribun?apikey=uget&limit="
+        }
+      ]
+    },
+    {
+      "name": "Tools",
+      "items": [
+        {
+          "name": "URL Shortener",
+          "desc": "Shorten long URLs using TinyURL",
+          "path": "/tools/shortlink?apikey=uget&url=",
+          "note": "Masukkan URL lengkap yang ingin dipendekkan"
+        },
+		  {
+  "name": "NGL Spam",
+  "desc": "Spam NGL anonymously",
+  "path": "/tools/nglspam?apikey=uget&target=&message=&count=",
+  "note": "target: username NGL atau link ngl.link\nmessage: pesan yang ingin dikirim\ncount: jumlah spam (max 20)"
+},
+        {
+          "name": "IMEI Checker",
+          "desc": "Cek informasi perangkat berdasarkan IMEI",
+          "path": "/tools/cekimei?q=",
+          "status": "ready",
+          "params": {
+            "q": "Nomor IMEI (wajib)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Asupan Jir",
+      "items": [
+        {
+          "name": "Random Asupan",
+          "desc": "Random video asupan",
+          "path": "/okep/asupan?apikey=uget"
+        }
+      ]
+    },
+    {
+      "name": "Search Tools",
+      "items": [
+		 {
+  "name": "Pinterest Search",
+  "desc": "Search images from Pinterest",
+  "path": "/search/pinterest?apikey=uget&q=&limit=",
+  "note": "q: kata kunci pencarian (contoh: nina tutachia)\nlimit: jumlah hasil gambar (opsional, default 10)"
+},
+        {
+          "name": "Google Image Search",
+          "desc": "Search images from Google",
+          "path": "/search/gimage?apikey=uget&q="
+        },
+		  {
+  "name": "TikTok Search",
+  "desc": "Search videos from TikTok",
+  "path": "/search/tiktoks?apikey=uget&q="
+	  },
+        {
+          "name": "YouTube",
+          "desc": "Video search",
+          "path": "/search/youtube?q="
+        }
+      ]
+    }
+  ]
+}
